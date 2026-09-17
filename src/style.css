@@ -28,7 +28,7 @@ body {
   gap: 100px;
 }
 
-.column img {
+/* .column img {
   width: 80%;
   aspect-ratio: 3 / 2;
   object-fit: cover;
@@ -38,7 +38,7 @@ body {
 
  filter: blur(0.25px) contrast(0.97);
 
-}
+} */
 
 .hero {
   height: 100vh;
@@ -62,15 +62,15 @@ header {
   -webkit-backdrop-filter: blur(15px);
 }
 
-.gallery {
+/* .gallery {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   padding: 20px;
-}
+} */
 
 .column img {
-  width: 80%;
+  width: 100%;
   aspect-ratio: 3 / 2;
   object-fit: cover;
   align-self: center;
@@ -220,7 +220,7 @@ header {
   display: block;
 }
 
-.project {
+/* .project {
   width: 100%;
   align-self: center;
 }
@@ -230,6 +230,46 @@ header {
   aspect-ratio: 3 / 2;
   object-fit: cover;
   display: block;
+} */
+
+.project {
+  position: relative;
+  width: 100%;
+  align-self: center;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.project img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  display: block;
+
+  transform: scale(1);
+  will-change: transform;
+}
+
+.project::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle 140px at var(--mouse-x) var(--mouse-y),
+      rgba(255, 255, 255, 0.18),
+      rgba(255, 255, 255, 0.03) 55%,
+      transparent 90%
+    );
+
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.project:hover::after {
+  opacity: 1;
 }
 
 .project-info {

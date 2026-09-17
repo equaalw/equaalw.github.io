@@ -3,7 +3,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import "./style.css";
 
+import { Flip } from "gsap/Flip";
+import barba from "@barba/core";
+
 gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, Flip);
 
 const lenis = new Lenis({
   lerp: 0.05,
@@ -154,10 +158,90 @@ columns.forEach((column, i) => {
     const opacity = gsap.utils.clamp(
       0.25,
       1,
-      1 - distance / (window.innerHeight * 1)
+      1 - distance / (window.innerHeight * 2)
     );
 
     gsap.set(project, { opacity });
   });
 });
+});
+
+const projects = document.querySelectorAll(".project");
+
+projects.forEach((project) => {
+  const image = project.querySelector("img");
+
+  project.addEventListener("mouseenter", () => {
+    gsap.to(image, {
+      scale: 1.06,
+      duration: 1.2,
+      ease: "power2.out"
+    });
+
+    gsap.to(project, {
+      "--mouse-x": "50%",
+      "--mouse-y": "50%",
+      duration: 0.4,
+      ease: "power2.out"
+    });
+  });
+
+  project.addEventListener("mousemove", (e) => {
+    const rect = project.getBoundingClientRect();
+
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    gsap.to(project, {
+      "--mouse-x": `${x}px`,
+      "--mouse-y": `${y}px`,
+      duration: 0.25,
+      ease: "power2.out"
+    });
+  });
+
+  project.addEventListener("mouseleave", () => {
+    gsap.to(image, {
+      scale: 1,
+      duration: 1,
+      ease: "power2.inOut"
+    });
+  });
+});
+
+
+barba.init({
+  transitions: [
+    {
+      name: "image-zoom",
+
+      async leave(data) {
+        const clickedProject = data.trigger;
+
+        if (!clickedProject) return;
+
+        const image = clickedProject.querySelector("img");
+
+        if (!image) return;
+
+        await gsap.to(image, {
+          scale: 1.8,
+          duration: 0.8,
+          ease: "power3.inOut"
+        });
+      },
+
+      async enter(data) {
+        gsap.set(data.next.container, {
+          opacity: 0
+        });
+
+        await gsap.to(data.next.container, {
+          opacity: 1,
+          duration: 0.5,
+          ease: "power2.out"
+        });
+      }
+    }
+  ]
 });
