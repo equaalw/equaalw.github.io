@@ -61,7 +61,24 @@ greetings.forEach((greeting) => {
     });
 });
 
+const galleryTrack = document.querySelector(".auto-gallery-track");
 
+if (galleryTrack) {
+  const images = [...galleryTrack.querySelectorAll("img")];
+
+  images.forEach((img) => {
+    galleryTrack.appendChild(img.cloneNode(true));
+  });
+
+  const originalWidth = galleryTrack.scrollWidth / 2;
+
+  gsap.to(galleryTrack, {
+    x: -originalWidth,
+    duration: 12,
+    ease: "none",
+    repeat: -1
+  });
+}
 
 const scrollHint = document.querySelector(".scroll-hint");
 
@@ -165,6 +182,8 @@ columns.forEach((column, i) => {
     });
   });
 });
+
+
 
 const projects = document.querySelectorAll(".project");
 

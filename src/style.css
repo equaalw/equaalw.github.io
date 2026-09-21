@@ -48,6 +48,31 @@ body {
   overflow: hidden;
 }
 
+.auto-gallery {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  opacity: 0.35;
+  /* filter: blur(4px); */
+}
+
+.auto-gallery-track {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  width: max-content;
+  height: 100%;
+}
+
+.auto-gallery-track img {
+  width: 35vw;
+  height: 60vh;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+
 
 header {
   position: fixed;
