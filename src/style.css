@@ -40,6 +40,7 @@ body {
 
 } */
 
+
 .hero {
   height: 100vh;
   position: relative;
@@ -219,6 +220,7 @@ header {
   align-self: center;
   display: block;
 }
+
 
 /* .project {
   width: 100%;

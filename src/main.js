@@ -149,21 +149,21 @@ columns.forEach((column, i) => {
     }
   );
 
- gsap.ticker.add(() => {
-  document.querySelectorAll(".project").forEach((project) => {
-    const rect = project.getBoundingClientRect();
-    const center = rect.top + rect.height / 2;
-    const distance = Math.abs(window.innerHeight / 2 - center);
+  gsap.ticker.add(() => {
+    document.querySelectorAll(".project").forEach((project) => {
+      const rect = project.getBoundingClientRect();
+      const center = rect.top + rect.height / 2;
+      const distance = Math.abs(window.innerHeight / 2 - center);
 
-    const opacity = gsap.utils.clamp(
-      0.25,
-      1,
-      1 - distance / (window.innerHeight * 2)
-    );
+      const opacity = gsap.utils.clamp(
+        0.25,
+        1,
+        1 - distance / (window.innerHeight * 2)
+      );
 
-    gsap.set(project, { opacity });
+      gsap.set(project, { opacity });
+    });
   });
-});
 });
 
 const projects = document.querySelectorAll(".project");
@@ -210,38 +210,163 @@ projects.forEach((project) => {
 });
 
 
-barba.init({
-  transitions: [
-    {
-      name: "image-zoom",
+// barba.init({
+//   transitions: [{
+//     name: 'zoom-transition',
+//     leave(data) {
 
-      async leave(data) {
-        const clickedProject = data.trigger;
+//       return gsap.to(data.current.container, {
+//         scale: 2,
+//         opacity: 0,
+//         duration: 0.8,
+//         ease: "power2.inOut"
+//       });
+//     },
+//     enter(data) {
 
-        if (!clickedProject) return;
+//       gsap.set(data.next.container, {
+//         scale: 0.5,
+//         opacity: 0
+//       });
 
-        const image = clickedProject.querySelector("img");
 
-        if (!image) return;
+//       return gsap.to(data.next.container, {
+//         scale: 1,
+//         opacity: 1,
+//         duration: 0.8,
+//         ease: "power2.out"
+//       });
+//     }
+//   }]
+// });
+// let transitionImage = null;
 
-        await gsap.to(image, {
-          scale: 1.8,
-          duration: 0.8,
-          ease: "power3.inOut"
-        });
-      },
+// barba.init({
+//   transitions: [
+//     {
+//       name: "zoom",
 
-      async enter(data) {
-        gsap.set(data.next.container, {
-          opacity: 0
-        });
+//       async leave({ current }) {
+//         const project = current.container.querySelector(".project");
 
-        await gsap.to(data.next.container, {
-          opacity: 1,
-          duration: 0.5,
-          ease: "power2.out"
-        });
-      }
+//         if (!project) return;
+
+//         const image = project.querySelector("img");
+
+//         const rect = image.getBoundingClientRect();
+
+//         const clone = image.cloneNode(true);
+
+//         clone.classList.add("page-transition-image");
+
+//         gsap.set(clone, {
+//           position: "fixed",
+//           top: rect.top,
+//           left: rect.left,
+//           width: rect.width,
+//           height: rect.height,
+//           objectFit: "cover",
+//           zIndex: 9999,
+//           margin: 0
+//         });
+
+//         document.body.appendChild(clone);
+
+//         // запоминаем clone для enter
+//         this.clone = clone;
+
+//         // прячем текущую страницу
+//         gsap.to(current.container, {
+//           opacity: 0,
+//           duration: 0.35,
+//           ease: "power2.inOut"
+//         });
+
+//         // zoom
+//         await gsap.to(clone, {
+//           top: 0,
+//           left: 0,
+//           width: "100vw",
+//           height: "100vh",
+//           duration: 1.1,
+//           ease: "power4.inOut"
+//         });
+//       },
+
+//       async enter({ next }) {
+//         const clone = this.clone;
+
+//         gsap.set(next.container, {
+//           opacity: 0
+//         });
+
+//         await gsap.to(next.container, {
+//           opacity: 1,
+//           duration: 0.6,
+//           ease: "power2.out"
+//         });
+
+//         if (clone) {
+//           await gsap.to(clone, {
+//             opacity: 0,
+//             duration: 0.4,
+//             ease: "power2.out"
+//           });
+
+//           clone.remove();
+//         }
+//       }
+//     }
+//   ]
+// });
+
+
+const darkSection = document.querySelector(".idiot-dark-section");
+
+if (darkSection) {
+  gsap.to(darkSection, {
+    y: 0,
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".project-hero",
+      start: "top top",
+      end: "bottom top",
+      scrub: true
     }
-  ]
-});
+  });
+}
+
+const videoTitle = document.querySelector(".video-title");
+
+if (videoTitle) {
+  const titles = [
+    "HEART OF THE FOREST SPIRIT",
+    "HEART OF LEMON TREE"
+  ];
+
+  let index = 0;
+
+  const titleTimeline = gsap.timeline({
+    repeat: -1,
+    delay: 2
+  });
+
+  titleTimeline
+    .to(videoTitle, {
+      opacity: 0,
+      duration: 0.5,
+      ease: "power2.in"
+    })
+    .call(() => {
+      index = (index + 1) % titles.length;
+      videoTitle.textContent = titles[index];
+    })
+    .to(videoTitle, {
+      opacity: 1,
+      duration: 0.5,
+      ease: "power2.out"
+    })
+    .to({}, {
+      duration: 2
+    });
+}
