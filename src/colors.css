@@ -7,12 +7,16 @@ body {
     margin: 0;
     width: 100%;
     height: 100%;
+    min-height: 100%;
+
 
 }
 
 body {
     background: white;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* overflow: hidden; */
     cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='22' viewBox='0 0 16 22'%3E%3Cpath d='M2 1V20L6.5 16L9.5 21L12 19.5L9 14H15L2 1Z' fill='white' stroke='black' stroke-width='1.2' stroke-linejoin='round'/%3E%3C/svg%3E") 2 1, auto;
 }
 
@@ -66,4 +70,60 @@ body {
     flex-shrink: 0;
 
     color: white;
+}
+
+.color-video {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    filter: blur(50px);
+
+    z-index: -1;
+}
+
+.color-page {
+    position: relative;
+    z-index: 1;
+}
+
+.color-video-section {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.color-video-section video {
+    /* width: 100%; */
+    height: 20%;
+    object-fit: cover;
+    display: block;
+    /* filter: blur(var(--video-blur, 10px)); */
+    scale: 1.2;
+}
+
+/* TEST */
+.color-video-section {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.video-follow {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    /* align-items: center; */
+    /* justify-content: center; */
+}
+
+.video-follow video {
+    height: 10%;
+    object-fit: cover;
+    display: block;
+    filter: blur(10px);
+    scale: 1.2;
 }

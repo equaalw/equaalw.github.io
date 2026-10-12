@@ -9,10 +9,23 @@ import barba from "@barba/core";
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(ScrollTrigger, Flip);
 
+
+window.addEventListener("load", () => {
+
+  gsap.to("html", {
+    opacity: 1,
+    duration: 1,
+    ease: "power2.out"
+  });
+
+});
+
 const lenis = new Lenis({
   lerp: 0.05,
   smoothWheel: true
 });
+
+
 
 lenis.on("scroll", ScrollTrigger.update);
 
@@ -210,9 +223,9 @@ columns.forEach((column, i) => {
       const distance = Math.abs(window.innerHeight / 2 - center);
 
       const opacity = gsap.utils.clamp(
-        0.25,
+        0.5,
         1,
-        1 - distance / (window.innerHeight * 2)
+        1 - distance / (window.innerHeight * 3)
       );
 
       gsap.set(project, { opacity });
@@ -220,7 +233,62 @@ columns.forEach((column, i) => {
   });
 });
 
+const gallery = document.querySelector(".gallery");
 
+if (gallery) {
+  lenis.on("scroll", ({ scroll }) => {
+    const galleryBottom =
+      gallery.getBoundingClientRect().bottom + window.scrollY;
+
+    lenis.options.lerp =
+      scroll >= galleryBottom - window.innerHeight ? 0.18 : 0.05;
+  });
+}
+
+gsap.to(".hero", {
+  filter: "blur(20px)",
+  scale: 1.3,
+  ease: "none",
+  scrollTrigger: {
+    trigger: ".hero",
+    start: "bottom 80%",
+    end: "bottom 50%",
+    scrub: true
+  }
+});
+
+gsap.to(".hero-overlay", {
+  backgroundColor: "rgba(255, 255, 255, 1)",
+  ease: "none",
+  scrollTrigger: {
+    trigger: ".hero",
+    start: "bottom 80%",
+    end: "bottom 50%",
+    scrub: true
+  }
+});
+
+gsap.to(".hero-name", {
+  color: "#000",
+  ease: "none",
+  scrollTrigger: {
+    trigger: ".hero",
+    start: "bottom 60%",
+    end: "bottom 30%",
+    scrub: true
+  }
+});
+
+gsap.to("header", {
+  backgroundColor: "rgba(255, 255, 255, 1)",
+  ease: "none",
+  scrollTrigger: {
+    trigger: ".hero",
+    start: "bottom 80%",
+    end: "bottom 50%",
+    scrub: true
+  }
+});
 
 const projects = document.querySelectorAll(".project");
 
@@ -229,7 +297,7 @@ projects.forEach((project) => {
 
   project.addEventListener("mouseenter", () => {
     gsap.to(image, {
-      scale: 1.06,
+      scale: 1.0,
       duration: 1.2,
       ease: "power2.out"
     });
@@ -425,4 +493,41 @@ if (videoTitle) {
     .to({}, {
       duration: 2
     });
+}
+
+const rigaTime = document.querySelector("#riga-time");
+
+function updateRigaTime() {
+  if (!rigaTime) return;
+
+  rigaTime.textContent = new Intl.DateTimeFormat("en-GB", {
+    timeZone: "Europe/Riga",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false
+  }).format(new Date());
+}
+
+updateRigaTime();
+setInterval(updateRigaTime, 1000);
+
+const footerImageWrap = document.querySelector(".footer-image-wrap");
+const footerCursor = document.querySelector(".footer-cursor");
+
+if (footerImageWrap && footerCursor) {
+  footerImageWrap.addEventListener("mousemove", (e) => {
+    footerCursor.style.left = `${e.clientX}px`;
+    footerCursor.style.top = `${e.clientY}px`;
+  });
+
+  footerImageWrap.addEventListener("mouseenter", () => {
+    footerCursor.style.opacity = "1";
+    footerCursor.style.visibility = "visible";
+  });
+
+  footerImageWrap.addEventListener("mouseleave", () => {
+    footerCursor.style.opacity = "0";
+    footerCursor.style.visibility = "hidden";
+  });
 }
