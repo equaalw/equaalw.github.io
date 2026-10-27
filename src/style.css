@@ -108,13 +108,12 @@ header.header-scrolled {
 
   /* background: rgba(255, 255, 255, 0.65);
   backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px); */
+  -webkit-backdrop-filter: blur(15px); 
 background: rgba(0, 0, 0, 0.05);
 backdrop-filter: blur(15px);
 -webkit-backdrop-filter: blur(15px);
 }
-
-*/
+/*  */
 /* .gallery {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
