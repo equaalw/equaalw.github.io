@@ -6,7 +6,6 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: 'index.html',
-        idiot: 'idiot.html',
         colors: 'colors.html',
         diffusione: 'diffusione.html',
         oe: 'oe.html'
