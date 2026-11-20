@@ -145,42 +145,6 @@ function getLines() {
 const lines = getLines();
 
 
-lines.forEach((line, lineIndex) => {
-
-    gsap.to(line, {
-
-        opacity: 0,
-
-        duration: 0.1,
-
-        stagger: {
-            each: 0.03
-        },
-
-        repeat: 1,
-        yoyo: true,
-
-        delay: lineIndex * 0.9,
-
-        ease: "elastic.out(1,0.3)"
-
-    });
-
-});
-
-// letters.forEach((letter, index) => {
-
-//   gsap.to(letter, {
-//     scale: 2,
-//     duration: 0.3 + Math.random(),
-//     repeat: -1,
-//     yoyo: true,
-//     delay: Math.random() * 2,
-//     ease: "sine.inOut"
-//   });
-
-// });
-
 window.addEventListener("mousemove", (e) => {
 
     const centerX = window.innerWidth / 2;
@@ -233,11 +197,11 @@ window.addEventListener("mousemove", (e) => {
             1 - distance / radius
         );
 
-        const scale = 1 + Math.pow(strength, 3) * 3;
+        const scale = 1 + Math.pow(strength, 3) * 1;
 
         gsap.to(letter, {
             scale: scale,
-            duration: 0.25,
+            duration: 0.3,
             ease: "power2.out",
             overwrite: "auto"
         });
@@ -304,21 +268,17 @@ if (videoFollow) {
         const mouseX = e.clientX - rect.left;
         const mouseY = e.clientY - rect.top;
 
-        // const centerX = rect.width / 2;
-        // const centerY = rect.height / 2;
-         const centerX = 0;
+        const centerX = 0;
         const centerY = 0;
 
-        // const x = (mouseX - centerX) * 0.02;
-        // const y = (mouseY - centerY) * 0.02;
         const x = Math.max(0, (mouseX - centerX) * 2.5);
         const y = Math.max(0, (mouseY - centerY) * 2.5);
 
         gsap.to(videoFollow, {
             x: x,
             y: y,
-            duration: 7,
-            ease: "powe r3.out"
+            duration: 12,
+            ease: "power3.out"
         });
 
     });
@@ -328,7 +288,7 @@ if (videoFollow) {
         gsap.to(videoFollow, {
             x: 0,
             y: 0,
-            duration: 0.8,
+            duration: 20,
             ease: "power3.out"
         });
 
