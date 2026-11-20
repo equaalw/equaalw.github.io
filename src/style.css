@@ -364,7 +364,8 @@ backdrop-filter: blur(15px);
   margin-top: 10px;
   color: #1f1f1f;
   font-family: "Inter", sans-serif;
-  font-size: 20px;
+  /* font-size: 20px; */
+  font-size: 28px;
 }
 
 .project-info span:first-child {
@@ -373,6 +374,8 @@ backdrop-filter: blur(15px);
 
 .project-info span:last-child {
   font-weight: 400;
+  /* font-size: 18px;
+  margin-top: 14px */
 }
 
 .footer-bottom {

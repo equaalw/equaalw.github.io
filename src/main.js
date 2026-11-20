@@ -465,7 +465,9 @@ const videoTitle = document.querySelector(".video-title");
 if (videoTitle) {
   const titles = [
     "HEART OF THE FOREST SPIRIT",
-    "HEART OF LEMON TREE"
+    "HEART OF LEMON TREE",
+    "replica ensured",
+    "© idiot"
   ];
 
   let index = 0;
