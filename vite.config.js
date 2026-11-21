@@ -5,9 +5,11 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        main: 'index.html',
+        index: 'index.html',
+        idiot: 'idiot.html',
         colors: 'colors.html',
         diffusione: 'diffusione.html',
+        galerie: 'galerie-next.html',
         oe: 'oe.html'
       }
     }
