@@ -445,7 +445,7 @@ projects.forEach((project) => {
 // });
 
 
-const darkSection = document.querySelector(".idiot-dark-section");
+const darkSection = document.querySelector(".idiot-section");
 
 if (darkSection) {
   gsap.to(darkSection, {
@@ -454,7 +454,7 @@ if (darkSection) {
     scrollTrigger: {
       trigger: ".project-hero",
       start: "top top",
-      end: "bottom top",
+      end: "bottom 120%",
       scrub: true
     }
   });
@@ -467,7 +467,7 @@ if (videoTitle) {
     "HEART OF THE FOREST SPIRIT",
     "HEART OF LEMON TREE",
     "replica ensured",
-    "© idiot"
+    "scroll down. © idiot"
   ];
 
   let index = 0;

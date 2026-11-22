@@ -124,3 +124,23 @@ html::-webkit-scrollbar {
   display: block;
   object-fit: cover;
 }
+
+.gallery-video {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.idiot-gallery-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.idiot-gallery-grid img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
