@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -12,18 +12,46 @@
 </head>
 
 <body>
+    <script src="https://unpkg.com/lenis@1.3.11/dist/lenis.min.js"></script>
+    <script>
+        const lenis = new Lenis({
+            lerp: 0.3,
+            smoothWheel: true
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+
+        requestAnimationFrame(raf);
+    </script>
     <header>
         <a href="./" class="hero-square"></a>
 
-        <p class="hero-name">other raw materials</p>
-        
-    <main class="video-page">
+        <p class="hero-name">other raw materials (partly-open)</p>
 
-        <video autoplay muted loop playsinline>
-            <source src="/videos/heraldy-hero.mp4" type="video/mp4">
-        </video>
+        <main class="video-page">
 
-    </main>
+            <video autoplay muted loop playsinline>
+                <source src="/videos/heraldy-hero.mp4" type="video/mp4">
+            </video>
+            <section class="heraldy-intro">
+                <p>
+                    This place has a mineral scent.
+                    Raw, earthy, and strangely familiar.
+                </p>
+            </section>
+            <div class="heraldy-gallery">
+                <img src="/images/diffusione/heraldic-lines.png" alt="">
+                <img src="/images/diffusione/2.jpg" alt="">
+                <img src="/images/diffusione/3.jpg" alt="">
+                <img src="/images/diffusione/4.jpg" alt="">
+                <img src="/images/diffusione/5.jpg" alt="">
+                <!-- <img src="/images/diffusione/image-6.jpg" alt=""> -->
+            </div>
+
+        </main>
 
 </body>
 

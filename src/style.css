@@ -3,6 +3,15 @@
   font-family: "Inter", sans-serif;
 }
 
+html,
+body {
+  /* overflow-x: hidden; */
+  /* scrollbar-width: none; */
+}
+
+/* body::-webkit-scrollbar {
+  display: none;
+} */
 
 img {
   image-rendering: auto;
@@ -365,7 +374,7 @@ backdrop-filter: blur(15px);
   color: #1f1f1f;
   font-family: "Inter", sans-serif;
   /* font-size: 20px; */
-  font-size: 28px;
+  font-size: 18px;
 }
 
 .project-info span:first-child {
